@@ -6,8 +6,8 @@ export default function Home() {
 			<Head>
 				<title>Create Next App</title>
 			</Head>
-			<main>
-				<h1>Next Shop</h1>
+			<main className="p-5">
+				<h1 className="font-bold underline">Next Shop</h1>
 			</main>
 		</>
 	);
