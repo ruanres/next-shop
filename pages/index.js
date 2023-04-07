@@ -1,9 +1,9 @@
+import Title from "@/components/Title";
 import {getProducts} from "@/lib/products";
 import Head from "next/head";
 import Link from "next/link";
 
 export async function getStaticProps() {
-	console.log("[getStaticProps]");
 	const products = await getProducts();
 	return {
 		props: {
@@ -20,7 +20,7 @@ export default function Home({products}) {
 				<title>Create Next App</title>
 			</Head>
 			<main className="p-5">
-				<h1 className="font-bold">Next Shop</h1>
+				<Title>Next Shop</Title>
 				<ul>
 					{products.map(product => (
 						<li key={product.id}>
