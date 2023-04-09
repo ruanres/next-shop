@@ -1,4 +1,5 @@
 import Title from "@/components/Title";
+import { ApiError } from "@/lib/api";
 import { getProduct, getProducts } from "@/lib/products";
 import Head from "next/head";
 
@@ -13,9 +14,13 @@ export async function getStaticProps(context) {
 			revalidate: 5 * 60,
 		};
 	} catch (error) {
-		return {
-			notFound: true,
-		};
+		if(error instanceof ApiError && error.status === 404) {
+			return {
+				notFound: true,
+			};
+		}
+		
+		throw error;
 	}
 
 }
