@@ -4,13 +4,20 @@ import Head from "next/head";
 
 export async function getStaticProps(context) {
 	const { id } = context.params;
-	const product = await getProduct(id);
-	return {
-		props: {
-			product,
-		},
-		revalidate: 5 * 60,
-	};
+	try {
+		const product = await getProduct(id);
+		return {
+			props: {
+				product,
+			},
+			revalidate: 5 * 60,
+		};
+	} catch (error) {
+		return {
+			notFound: true,
+		};
+	}
+
 }
 
 export async function getStaticPaths() {
@@ -18,7 +25,7 @@ export async function getStaticPaths() {
 	const paths = products.map(p => ({ params: { id: p.id.toString() } }));
 	return {
 		paths,
-		fallback: false,
+		fallback: "blocking",
 	};
 }
 
