@@ -1,7 +1,7 @@
-import Title from "@/components/Title";
-import {getProducts} from "@/lib/products";
-import Head from "next/head";
-import Link from "next/link";
+import Title from '@/components/Title';
+import {getProducts} from '@/lib/products';
+import Head from 'next/head';
+import Link from 'next/link';
 
 export async function getStaticProps() {
 	const products = await getProducts();

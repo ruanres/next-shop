@@ -1,7 +1,7 @@
-import Title from "@/components/Title";
-import { ApiError } from "@/lib/api";
-import { getProduct, getProducts } from "@/lib/products";
-import Head from "next/head";
+import Title from '@/components/Title';
+import { ApiError } from '@/lib/api';
+import { getProduct, getProducts } from '@/lib/products';
+import Head from 'next/head';
 
 export async function getStaticProps(context) {
 	const { id } = context.params;
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 	const paths = products.map(p => ({ params: { id: p.id.toString() } }));
 	return {
 		paths,
-		fallback: "blocking",
+		fallback: 'blocking',
 	};
 }
 
