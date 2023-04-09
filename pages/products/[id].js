@@ -3,6 +3,8 @@ import { ApiError } from '@/lib/api';
 import { getProduct, getProducts } from '@/lib/products';
 import Head from 'next/head';
 
+const { REVALIDATE_SECONDS } = process.env;
+
 export async function getStaticProps(context) {
 	const { id } = context.params;
 	try {
@@ -11,7 +13,7 @@ export async function getStaticProps(context) {
 			props: {
 				product,
 			},
-			revalidate: 5 * 60,
+			revalidate: parseInt(REVALIDATE_SECONDS),
 		};
 	} catch (error) {
 		if(error instanceof ApiError && error.status === 404) {

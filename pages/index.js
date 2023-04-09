@@ -3,13 +3,15 @@ import {getProducts} from '@/lib/products';
 import Head from 'next/head';
 import Link from 'next/link';
 
+const { REVALIDATE_SECONDS } = process.env;
+
 export async function getStaticProps() {
 	const products = await getProducts();
 	return {
 		props: {
 			products
 		},
-		revalidate: 5 * 60
+		revalidate: parseInt(REVALIDATE_SECONDS),
 	};
 }
 
