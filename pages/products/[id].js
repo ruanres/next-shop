@@ -2,6 +2,7 @@ import Title from '@/components/Title';
 import { ApiError } from '@/lib/api';
 import { getProduct, getProducts } from '@/lib/products';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const { REVALIDATE_SECONDS } = process.env;
 
@@ -45,7 +46,13 @@ function ProductPage({product}) {
 			</Head>
 			<main className="px-6 py-4">
 				<Title>{product.title}</Title>
-				<p>{product.description}</p>
+				<div className='flex gap-4 flex-col md:flex-row'>
+					<Image src={product.pictureUrl} alt={product.title} width={640} height={480} />
+					<div>
+						<p className='text-sm'>{product.description}</p>
+						<p className='text-lg font-bold'>${product.price}</p>
+					</div>
+				</div>
 			</main>
 		</>
 	);
