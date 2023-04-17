@@ -1,8 +1,10 @@
 import { fetchJson } from '@/lib/api';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 function Navbar() {
+	const router = useRouter();
 	const [user, setUser] = useState();
 
 	useEffect(() => {
@@ -15,6 +17,12 @@ function Navbar() {
 			}
 		})();
 	}, []);
+
+	const handleLogout = async () => {
+		await fetch('/api/logout');
+		setUser(undefined);
+		router.push('/sign-in');
+	};
 
 	return (
 		<nav className='px-2 py-1 text-sm'>
@@ -30,7 +38,7 @@ function Navbar() {
 								{user.name}
 							</li>
 							<li>
-								<button>Sign Out</button>
+								<button onClick={handleLogout}>Sign Out</button>
 							</li>
 						</>
 					) : (
