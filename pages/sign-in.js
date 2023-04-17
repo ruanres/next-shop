@@ -3,9 +3,11 @@ import Field from '@/components/Field';
 import Input from '@/components/Input';
 import Page from '@/components/Page';
 import { fetchJson } from '@/lib/api';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 function SignInPage() {
+	const router = useRouter();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [status, setStatus] = useState({ loading: false, error: false });
@@ -24,6 +26,7 @@ function SignInPage() {
 			);
 			setStatus({ loading: false, error: false });
 			console.log(response);
+			router.push('/');
 		} catch (error) {
 			setStatus({ loading: false, error: true });
 		}

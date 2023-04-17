@@ -1,7 +1,21 @@
+import { fetchJson } from '@/lib/api';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 function Navbar() {
-	const user = undefined;
+	const [user, setUser] = useState();
+
+	useEffect(() => {
+		(async function() {
+			try {
+				const user = await fetchJson('/api/user');
+				setUser(user);
+			} catch (error) {
+				// not sign in				
+			}
+		})();
+	}, []);
+
 	return (
 		<nav className='px-2 py-1 text-sm'>
 			<ul className='flex gap-2'>
@@ -13,7 +27,7 @@ function Navbar() {
 					user ? (
 						<>
 							<li>
-                Alice
+								{user.name}
 							</li>
 							<li>
 								<button>Sign Out</button>

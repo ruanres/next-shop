@@ -38,3 +38,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 GET http://localhost:1337/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgxNDc4ODYzLCJleHAiOjE2ODQwNzA4NjN9.YO24MQnlhBTbNrbLKzwdmRVRKpOwZpESx2KQ8TZ9Hgo
 
+### get user by api
+GET http://localhost:3000/api/user
