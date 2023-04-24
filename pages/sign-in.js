@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Field from '@/components/Field';
 import Input from '@/components/Input';
 import Page from '@/components/Page';
-import { fetchJson } from '@/lib/api';
+import { useSignIn } from '@/hooks/user';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -10,26 +10,12 @@ function SignInPage() {
 	const router = useRouter();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [status, setStatus] = useState({ loading: false, error: false });
+	const {signIn, signInError, signInLoading} = useSignIn();
   
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		setStatus({ loading: true, error: false });
-		try {
-			const response = await fetchJson(
-				'/api/login',
-				{
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ email, password })
-				}
-			);
-			setStatus({ loading: false, error: false });
-			console.log(response);
-			router.push('/');
-		} catch (error) {
-			setStatus({ loading: false, error: true });
-		}
+		const valid = await signIn();
+		if (valid) router.push('/');
 	};
 
 	return (
@@ -45,12 +31,12 @@ function SignInPage() {
 						onChange={(event) => setPassword(event.target.value)} 
 					/>
 				</Field>
-				{status.error && 
+				{signInError && 
           <p className='text-red-700'>
             Invalid Credentials
           </p>
 				}
-				{status.loading && 
+				{signInLoading && 
           <p>
             Loading...
           </p>
