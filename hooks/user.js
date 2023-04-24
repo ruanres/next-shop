@@ -1,6 +1,8 @@
 import { fetchJson } from '@/lib/api';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
+const USER_QUERY_KEY = 'user';
+
 export function useSignIn() {
 	const queryClient = useQueryClient();
 	const mutation = useMutation(({email, password}) => fetchJson(
@@ -15,7 +17,7 @@ export function useSignIn() {
 		signIn: async (email, password) => {
 			try {
 				const user = await mutation.mutateAsync({email, password});
-				queryClient.setQueryData('user', user);
+				queryClient.setQueryData(USER_QUERY_KEY, user);
 				return true;
 			} catch (error) {
 				return false;
@@ -26,8 +28,17 @@ export function useSignIn() {
 	};
 }
 
+export function useSignOut() {
+	const queryClient = useQueryClient();
+	const mutation = useMutation(() => fetchJson('/api/logout'));
+	return async () => {
+		await mutation.mutateAsync();
+		queryClient.setQueriesData(USER_QUERY_KEY, undefined);
+	};
+}
+
 export function useUser() {
-	const query = useQuery('user', async () => {
+	const query = useQuery(USER_QUERY_KEY, async () => {
 		try {
 			return await fetchJson('/api/user');
 		} catch (error) {

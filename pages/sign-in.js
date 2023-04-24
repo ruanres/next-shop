@@ -14,7 +14,7 @@ function SignInPage() {
   
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const valid = await signIn();
+		const valid = await signIn(email, password);
 		if (valid) router.push('/');
 	};
 

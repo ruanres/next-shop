@@ -1,13 +1,14 @@
-import { useUser } from '@/hooks/user';
+import { useSignOut, useUser } from '@/hooks/user';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 function Navbar() {
 	const router = useRouter();
 	const user = useUser();
+	const signOut = useSignOut();
 
 	const handleLogout = async () => {
-		await fetch('/api/logout');
+		await signOut();
 		router.push('/sign-in');
 	};
 
