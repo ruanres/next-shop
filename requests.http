@@ -31,8 +31,20 @@ Content-Type: application/json
 
 ### get cart items
 GET http://localhost:1337/cart-items
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgxNDc4ODYzLCJleHAiOjE2ODQwNzA4NjN9.YO24MQnlhBTbNrbLKzwdmRVRKpOwZpESx2KQ8TZ9Hgo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMzY2OTQxLCJleHAiOjE2ODQ5NTg5NDF9.OqLrD8WRRf-tryrn4vZfF0GRhj_mX5HjV3gfx4ec7pg
 
+### post cart items
+POST http://localhost:1337/cart-items
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMzY2OTQxLCJleHAiOjE2ODQ5NTg5NDF9.OqLrD8WRRf-tryrn4vZfF0GRhj_mX5HjV3gfx4ec7pg
+Content-Type: application/json
+
+{
+  "product": 2,
+  "quantity": 1
+}
+
+### get cart by api
+GET http://localhost:3000/api/cart
 
 ### get user
 GET http://localhost:1337/users/me
