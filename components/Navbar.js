@@ -26,6 +26,9 @@ function Navbar() {
 								{user.name}
 							</li>
 							<li>
+								<Link href="/cart">Cart</Link>
+							</li>
+							<li>
 								<button onClick={handleLogout}>Sign Out</button>
 							</li>
 						</>
