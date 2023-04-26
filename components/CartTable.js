@@ -24,7 +24,7 @@ function CartTable({ cart }) {
 				))}
 				<tr>
 					<td className='px-4 py-2 text-left font-bold'>Total</td>
-					<td className='px-4 py-2 text-right font-bold text-red-500' colspan="3">
+					<td className='px-4 py-2 text-right font-bold text-red-500' colSpan="3">
 						{formatPrice(cart.total)}
 					</td>
 				</tr>

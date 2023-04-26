@@ -31,11 +31,11 @@ Content-Type: application/json
 
 ### get cart items
 GET http://localhost:1337/cart-items
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMzY2OTQxLCJleHAiOjE2ODQ5NTg5NDF9.OqLrD8WRRf-tryrn4vZfF0GRhj_mX5HjV3gfx4ec7pg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyNTA5NjE5LCJleHAiOjE2ODUxMDE2MTl9.alIENjqeAAt6ylJZfHh9dJ6vqhZg69QksuGlbJGrdSs
 
 ### post cart items
 POST http://localhost:1337/cart-items
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMzY2OTQxLCJleHAiOjE2ODQ5NTg5NDF9.OqLrD8WRRf-tryrn4vZfF0GRhj_mX5HjV3gfx4ec7pg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyNTA5NjE5LCJleHAiOjE2ODUxMDE2MTl9.alIENjqeAAt6ylJZfHh9dJ6vqhZg69QksuGlbJGrdSs
 Content-Type: application/json
 
 {

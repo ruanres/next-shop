@@ -1,4 +1,7 @@
+import AddToCart from '@/components/AddToCart';
+import Button from '@/components/Button';
 import Page from '@/components/Page';
+import { useUser } from '@/hooks/user';
 import { ApiError } from '@/lib/api';
 import { getProduct, getProducts } from '@/lib/products';
 import Image from 'next/image';
@@ -38,6 +41,7 @@ export async function getStaticPaths() {
 
 
 function ProductPage({product}) {
+	const user = useUser();
 	return (
 		<>
 			<Page title={product.title}>
@@ -46,6 +50,7 @@ function ProductPage({product}) {
 					<div>
 						<p className='text-sm'>{product.description}</p>
 						<p className='text-lg font-bold'>${product.price}</p>
+						{user && <AddToCart productId={product.id} /> }
 					</div>
 				</div>
 			</Page>

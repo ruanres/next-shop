@@ -1,7 +1,5 @@
 import { fetchJson } from '@/lib/api';
 
-const { CMS_URL } = process.env;
-
 function stripCartItem(item) {
 	const { id, product, quantity } = item;
 	return {
@@ -16,6 +14,15 @@ function stripCartItem(item) {
 	};
 }
 
+function formatCartItems(cartItems) {
+	const items = cartItems.map(stripCartItem);
+	const cartTotal = items.reduce((sum, item) => sum + item.total, 0);
+	return {
+		items,
+		total: cartTotal,
+	};
+}
+
 
 async function handleGetCart(req, res) {
 	const { jwt } = req.cookies;
@@ -24,15 +31,10 @@ async function handleGetCart(req, res) {
 		return;
 	} 
 	try {
-		const cartItems = await fetchJson(`${CMS_URL}/cart-items`, {
+		const cartItems = await fetchJson(`${process.env.CMS_URL}/cart-items`, {
 			headers: { 'Authorization': `Bearer ${jwt}` },
 		});
-		const items = cartItems.map(stripCartItem);
-		const cartTotal = items.reduce((sum, item) => sum + item.total, 0);
-		res.status(200).json({
-			items,
-			total: cartTotal,
-		});
+		res.status(200).json(formatCartItems(cartItems));
 	} catch (error) {
 		res.status(401).end();
 	}
@@ -46,7 +48,7 @@ async function handlePostCart(req, res) {
 	} 
 	const { productId, quantity } = req.body;
 	try {
-		await fetchJson(`${CMS_URL}/cart-items`, {
+		await fetchJson(`${process.env.CMS_URL}/cart-items`, {
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${jwt}`,
@@ -54,7 +56,6 @@ async function handlePostCart(req, res) {
 			},
 			body: JSON.stringify({ product: productId, quantity })
 		});
-
 		res.status(200).json({});
 	} catch (error) {
 		res.status(401).end();
